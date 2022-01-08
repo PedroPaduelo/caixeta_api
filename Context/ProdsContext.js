@@ -13,8 +13,6 @@ function ProdsProvider({ children }) {
   const [ prod, sprod ] = useState();
 
   const set_open = useCallback((dados) => {
-
-    
     setOpen(dados);
   },[])
 
@@ -22,13 +20,33 @@ function ProdsProvider({ children }) {
     sprod(dados);
   },[])
 
+
+  
+  const handleListaLike = useCallback(async(dados) => {
+    const {data} = await api.get(`ListByColLike/tbl_produtos/descricao_prod/${dados}`);
+    sprods(data.result);
+  },[])
+
+
   const handleLista = useCallback(async() => {
 
     const {data} = await api.get(`ListFull/tbl_produtos`);
     sprods(data.result);
 
-
   },[])
+  const handleListaByCol = useCallback(async(id, col) => {
+    if(id!=0){
+      const {data} = await api.get(`/ListByCol/tbl_produtos/${col}/${id}`);
+      sprods(data.result);
+    }else{
+      await handleLista()
+    }
+  },[handleLista])
+
+
+
+
+
 
   const handleCria = useCallback(async(dados) => {
     await api.post(`Creat/tbl_produtos`,dados );
@@ -64,6 +82,8 @@ function ProdsProvider({ children }) {
       set_open, 
 
       handleCria,
+      handleListaLike,
+      handleListaByCol,
       handleLista,
       handleAtualiza,
       handleDeleta

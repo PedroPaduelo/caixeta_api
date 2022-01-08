@@ -1,9 +1,13 @@
 import { ProductCard } from "./product-card";
-import { Box, Grid } from '@mui/material';
-import { useEffect, useMemo } from "react";
-import { useTable , usePagination, useFilters, useAsyncDebounce, useGlobalFilter} from 'react-table'
-import { useProd } from "../../hooks/useProd";
+import { Box, Card, CardContent, Grid } from '@mui/material';
+import { useContext, useEffect, useMemo } from "react";
+import { useTable , usePagination,useFilters, useAsyncDebounce, useGlobalFilter} from 'react-table'
 import PaginacaoProd from "./PaginacaoProd";
+import FiltroCat from "./FiltroGlobal/FiltroCat";
+import { ProdContext } from "../../Context/ProdsContext";
+import FiltroMarca from "./FiltroGlobal/FiltroMarca";
+import FiltroDescri from "./FiltroGlobal/FiltroDescri";
+
 
 const header = [
   {
@@ -13,62 +17,105 @@ const header = [
   },
 
   {
-    Header: 'Tipo',
-    accessor: 'tipo',
+    Header: 'descricao_prod',
+    accessor: 'descricao_prod',
     align: "left"
   },
 
   {
-    Header: 'Itens',
-    accessor: 'itens',
+    Header: 'codigo_de_barras',
+    accessor: 'codigo_de_barras',
     align: "left",
   },
 
   {
-    Header: 'Meio de pagamento',
-    accessor: 'meio_pagto',
+    Header: 'categorias',
+    accessor: 'categorias',
     align: "center",
   },
 
   {
-    Header: 'Preço',
-    accessor: 'preco_final',
+    Header: 'marca',
+    accessor: 'marca',
+    align: "right",
+  },
+
+
+
+
+  {
+    Header: 'preco_de_custo',
+    accessor: 'preco_de_custo',
     align: "right",
   },
 
   {
-    Header: 'Ações',
-    accessor: 'pendentes',
-    align: "center",
-    Cell: ({ row }) => (
-      <Grid
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Fab 
-          size="small" 
-          color="secondary" 
-          aria-label="add"
-          onClick={ async() => {
-            await handleDeleta(row.id)
-          }}
-        >
-          <DeleteForeverIcon />
-        </Fab>
-      </Grid>
-    ),
-  }
+    Header: 'preco_de_venda',
+    accessor: 'preco_de_venda',
+    align: "right",
+  },
 
+  {
+    Header: 'unidade',
+    accessor: 'unidade',
+    align: "right",
+  },
+
+  {
+    Header: 'fornecedor',
+    accessor: 'fornecedor',
+    align: "right",
+  },
+
+  {
+    Header: 'qtd_em_estoque',
+    accessor: 'qtd_em_estoque',
+    align: "right",
+  },
+
+  {
+    Header: 'qtd_estoque_min',
+    accessor: 'qtd_estoque_min',
+    align: "right",
+  },
+
+  {
+    Header: 'qtd_estoque_max',
+    accessor: 'qtd_estoque_max',
+    align: "right",
+  },
+
+  {
+    Header: 'status',
+    accessor: 'status',
+    align: "right",
+  },
+
+  {
+    Header: 'promocao',
+    accessor: 'promocao',
+    align: "right",
+  },
+
+  {
+    Header: 'markup',
+    accessor: 'markup',
+    align: "right",
+  }
 ]
 
 export const ListProd = () => {
 
+  const { 
+    handleLista, 
+    prods, 
+    set_open, 
+    set_sprod,
+    handleListaByCol
 
 
-  const {handleLista, prods, set_open, set_sprod } = useProd()
+  } = useContext(ProdContext);
+
 
   useEffect(() => {
     
@@ -83,6 +130,7 @@ export const ListProd = () => {
   }, []);
 
 
+
   const data = useMemo(
     () => prods, [prods]
   )
@@ -91,9 +139,8 @@ export const ListProd = () => {
     () => header, [header]
   )
   
+
   const {
-    headerGroups,
-    prepareRow,
     page,
     canPreviousPage,
     canNextPage,
@@ -102,30 +149,62 @@ export const ListProd = () => {
     gotoPage,
     nextPage,
     previousPage,
-    state,
-    preGlobalFilteredRows,
-    setGlobalFilter
-
+    state,    
   } = useTable(
       { columns, 
         data,
         initialState: { 
           pageIndex: 0 , 
           pageSize:  9,
-         }}, 
-      useGlobalFilter, 
+         }
+      }, 
+      useFilters,
+      useGlobalFilter,
       usePagination
   )
  
 
 
+
 return(
 
   <Box sx={{ pt: 3 }}>
+
+
+    <Box sx={{ mb: 3 }}>
+      <Card>
+        <CardContent>
+
+          <Grid
+            container
+            spacing={2}
+          >
+
+            <FiltroDescri
+              onChange={handleListaByCol}
+            />
+
+            <FiltroMarca
+              onChange={handleListaByCol}
+            />
+
+            <FiltroCat
+              onChange={handleListaByCol}
+            />
+
+          </Grid>
+          
+        </CardContent>
+      </Card>
+    </Box>
+
+
+
     <Grid
       container
       spacing={3}
     >
+
       {page.map((row) => (
         <Grid
           item
