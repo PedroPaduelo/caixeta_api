@@ -26,28 +26,6 @@ const Products = () => (
         <Container maxWidth={false}>
           <ProductListToolbar />
           <ListProd/>
-
-
-
-
-
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              pt: 3
-            }}
-          >
-            <Pagination
-              color="primary"
-              count={3}
-              size="small"
-            />
-          </Box>
-
-
-
-          
         </Container>
       </ProdsProvider>
       
