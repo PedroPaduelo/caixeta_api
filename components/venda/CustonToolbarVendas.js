@@ -26,7 +26,7 @@ import CriaModal from './CriaModal';
 
 
 
-export const CustonToolbar = ( {title, ...props} ) => {
+export const CustonToolbarVendas = ( {title, ...props} ) => {
 
   const {handleListaLike, produtoslist, sprodutoslist} = useSell()
   const { set_itens_sell_list } = useContext(SellItensContext);

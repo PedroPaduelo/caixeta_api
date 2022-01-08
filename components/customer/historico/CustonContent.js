@@ -2,7 +2,7 @@
 import { Box, Fab, Grid, InputAdornment, TextField } from '@mui/material';
 import PaymentIcon from '@mui/icons-material/Payment';
 import { useContext, useState } from 'react';
-import { CustonListTable } from './CustonListTable';
+import { CustonListTable } from './CustonListTableVendas';
 import { SellContex } from '../../../Context/SellContext';
 import { PagamentoContext } from '../../../Context/PagamentoContext';
 import { CustumerContext } from '../../../Context/CustumerContext';

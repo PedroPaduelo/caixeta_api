@@ -5,6 +5,8 @@ import { SellProvider } from '../Context/SellContext';
 import { SellItensProvider } from '../Context/SellItensContext';
 import { CustumerProvider } from '../Context/CustumerContext';
 import { CustonListTableSellFull } from '../components/venda/historico/CustonListTableSellFull';
+import { CustonListTableVendas } from '../components/customer/historico/CustonListTableVendas';
+import { CustonToolbarVendas } from '../components/venda/CustonToolbarVendas';
 
 const Venda = () => (
   <>
@@ -24,8 +26,8 @@ const Venda = () => (
         <SellItensProvider>
           <CustumerProvider>
             <Container maxWidth={false}>
-              {/* <CustonToolbar title="Vendas" />
-              <CustonListTable/> */}
+              <CustonToolbarVendas title="Vendas" />
+              <CustonListTableVendas/>
               <CustonListTableSellFull/>
             </Container>
           </CustumerProvider>
