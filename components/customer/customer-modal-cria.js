@@ -9,7 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import { CustumerForme } from './customer-forme';
 import { useCustumer } from '../../hooks/useCustumer';
-import { CustonContent } from './historico/CustonContent';
+import { CustonContentCustumer } from './historico/CustonContentCustumer';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -66,7 +66,7 @@ export default function CustumerCriaModal() {
         <CustumerForme />
 
 
-        <CustonContent/>
+        <CustonContentCustumer/>
 
 
 

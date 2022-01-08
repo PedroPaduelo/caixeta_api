@@ -5,8 +5,9 @@ import { SellProvider } from '../Context/SellContext';
 import { SellItensProvider } from '../Context/SellItensContext';
 import { CustumerProvider } from '../Context/CustumerContext';
 import { CustonListTableSellFull } from '../components/venda/historico/CustonListTableSellFull';
-import { CustonListTableVendas } from '../components/customer/historico/CustonListTableVendas';
+
 import { CustonToolbarVendas } from '../components/venda/CustonToolbarVendas';
+import { CustonListTableVendas } from '../components/venda/CustonListTableVendas';
 
 const Venda = () => (
   <>

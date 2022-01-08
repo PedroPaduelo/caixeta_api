@@ -20,7 +20,7 @@ import { CustumerContext } from '../../../Context/CustumerContext';
 
 
 
-export const CustonListTableVendas = (props) => {
+export const CustonListTable = (props) => {
   const { 
     vendasCliente,
     handleListaByCol,

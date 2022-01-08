@@ -19,7 +19,7 @@ import { SellItensContext } from '../../Context/SellItensContext';
 
 
 
-export const CustonListTable = (props) => {
+export const CustonListTableVendas = (props) => {
 
   const { 
     remove_itens_sell_list,
