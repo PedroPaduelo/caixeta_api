@@ -111,7 +111,7 @@ export const ListProd = () => {
         data,
         initialState: { 
           pageIndex: 0 , 
-          pageSize:  10,
+          pageSize:  9,
          }}, 
       useGlobalFilter, 
       usePagination
