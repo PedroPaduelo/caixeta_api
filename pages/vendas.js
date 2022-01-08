@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Box, Container } from '@mui/material';
 import { DashboardLayout } from '../components/dashboard-layout';
-import { CustonToolbar } from '../components/Venda/CustonToolbar';
+import { CustonToolbar } from '../components/venda/custonToolbar';
 import { CustonListTable } from '../components/Venda/CustonListTable';
 import { SellProvider } from '../Context/SellContext';
 import { SellItensProvider } from '../Context/SellItensContext';
