@@ -98,7 +98,6 @@ export const CustonListTableSellFull = (props) => {
                   <TableRow
                     key={i}
                     hover
-                    key={order.id}
                   >
                     <TableCell>
                       {order.id}
@@ -149,13 +148,6 @@ export const CustonListTableSellFull = (props) => {
                 ))}
               </TableBody>
   
-  
-
-
-
-
-
-
             </Table>
           </Box>
   
