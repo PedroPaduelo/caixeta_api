@@ -8,6 +8,42 @@ import { CustonListTableSellFull } from '../components/venda/historico/CustonLis
 
 import { CustonToolbarVendas } from '../components/venda/CustonToolbarVendas';
 import { CustonListTableVendas } from '../components/venda/CustonListTableVendas';
+import TabelaFilter from '../components/venda/historico/TabelaFilter';
+
+
+const header = [
+  {
+    Header: 'Method',
+    accessor: 'api_method',
+    align: "left",
+  },
+
+  {
+    Header: 'Titulo',
+    accessor: 'api_titulo',
+    align: "left"
+  },
+
+  {
+    Header: 'Path',
+    accessor: 'api_path',
+    align: "left",
+  },
+
+  {
+    Header: 'ações',
+    accessor: 'pendentes',
+    align: "center",
+  }
+]
+
+const headerHides = [
+  'created_at',
+  'updated_at',
+]
+
+
+
 
 const Venda = () => (
   <>

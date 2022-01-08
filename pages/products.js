@@ -27,6 +27,10 @@ const Products = () => (
           <ProductListToolbar />
           <ListProd/>
 
+
+
+
+
           <Box
             sx={{
               display: 'flex',
@@ -40,6 +44,10 @@ const Products = () => (
               size="small"
             />
           </Box>
+
+
+
+          
         </Container>
       </ProdsProvider>
       

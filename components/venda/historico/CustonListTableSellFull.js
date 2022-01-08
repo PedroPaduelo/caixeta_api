@@ -1,19 +1,90 @@
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
-  Avatar,
   Box,
   Card,
   CardHeader,
   Fab,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
 } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useContext, useEffect, useMemo } from 'react';
 import { SellContex } from '../../../Context/SellContext';
+import TabelaFilter from './TabelaFilter';
+
+
+
+const header = [
+  {
+    Header: 'ID',
+    accessor: 'id',
+    align: "left",
+  },
+
+  {
+    Header: 'Tipo',
+    accessor: 'tipo',
+    align: "left"
+  },
+
+  {
+    Header: 'Itens',
+    accessor: 'itens',
+    align: "left",
+  },
+
+  {
+    Header: 'Meio de pagamento',
+    accessor: 'meio_pagto',
+    align: "center",
+  },
+
+  {
+    Header: 'Preço',
+    accessor: 'preco_final',
+    align: "right",
+  },
+
+  {
+    Header: 'Ações',
+    accessor: 'pendentes',
+    align: "center",
+    Cell: ({ row }) => (
+      <Grid
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Fab 
+          size="small" 
+          color="secondary" 
+          aria-label="add"
+          onClick={ async() => {
+            await handleDeleta(row.id)
+          }}
+        >
+          <DeleteForeverIcon />
+        </Fab>
+      </Grid>
+    ),
+  }
+
+]
+
+const headerHides = [
+  "created_at",
+  "updated_at",
+  "user_created",
+  "user_updated",
+  "status",
+  "cliente"
+]
+
+
+
+
+
+
 
 
 
@@ -69,86 +140,15 @@ export const CustonListTableSellFull = (props) => {
         <PerfectScrollbar>
   
           <Box sx={{ minWidth: 800 }}>
-            <Table>
-  
 
+            <TabelaFilter
+              headers = {header}
+              rows = {vendas}
+              headerHides = {headerHides}
+              linePage={8}
+              handleDeleta={handleDeleta}
+            />
 
-
-
-              <TableHead>
-                <TableRow>
-
-                  <TableCell> ID </TableCell>  
-                  <TableCell> Tipo </TableCell>
-                  <TableCell> Itens </TableCell>
-                  <TableCell> Preço </TableCell>
-                  <TableCell> Meio de pagamento </TableCell>
-                  <TableCell> Açoes </TableCell>
-  
-                </TableRow>
-              </TableHead>
-  
-  
-
-
-
-
-              <TableBody>
-                {vendas.map((order, i) => (
-                  <TableRow
-                    key={i}
-                    hover
-                  >
-                    <TableCell>
-                      {order.id}
-                    </TableCell>
-
-                    <TableCell>
-                      {order.tipo}
-                    </TableCell>
-
-                    <TableCell>
-                      {order.itens.map((item, i) => (
-                        <Box
-                          key={item.id}
-                          sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            flexWrap: 'wrap',
-                          }}
-                        >
-                        {item.quantidade} X {item.descricao_prod}
-                        </Box>
-                      ))}
-                    </TableCell>
-
-                    <TableCell>
-                      R$ {order.preco_final}
-                    </TableCell>
-
-                    <TableCell>
-                      {order.meio_pagto}
-                    </TableCell>
-
-                    <TableCell>
-                      <Fab 
-                        size="small" 
-                        color="secondary" 
-                        aria-label="add"
-                        onClick={ async() => {
-                          await handleDeleta(order.id)
-                        }}
-                      >
-                        <DeleteForeverIcon />
-                      </Fab>
-                    </TableCell>
-
-                  </TableRow>
-                ))}
-              </TableBody>
-  
-            </Table>
           </Box>
   
         </PerfectScrollbar>

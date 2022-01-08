@@ -1,0 +1,19 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.pageCurrentPageNext{
+    justify-self: center;
+    align-self: center;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.pageNavigationButton{
+    padding: 5px;
+    border-radius: 5px;
+    border-color: var(--gray-line);
+    margin-right: 5px;
+    margin-left: 5px; 
+}
+
