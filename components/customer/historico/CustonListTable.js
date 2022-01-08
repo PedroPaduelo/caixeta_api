@@ -13,8 +13,8 @@ import {
 } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useContext, useEffect } from 'react';
-import { SellContex } from 'src/Context/SellContext';
-import { CustumerContext } from 'src/Context/CustumerContext';
+import { SellContex } from '../../../Context/SellContext';
+import { CustumerContext } from '../../../Context/CustumerContext';
 
 
 

@@ -1,7 +1,7 @@
 import { ProductCard } from "./product-card";
 import { Box, Grid } from '@mui/material';
 import { useEffect } from "react";
-import { useProd } from "src/hooks/useProd";
+import { useProd } from "../../hooks/useProd";
 
 export const ListProd = () => {
 

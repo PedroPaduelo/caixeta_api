@@ -15,7 +15,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useContext } from 'react';
 
 
-import { SellItensContext } from 'src/Context/SellItensContext';
+import { SellItensContext } from '../../Context/SellItensContext';
 
 
 

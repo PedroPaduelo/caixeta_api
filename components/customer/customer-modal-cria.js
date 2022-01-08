@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import { CustumerForme } from './customer-forme';
-import { useCustumer } from 'src/hooks/useCustumer';
+import { useCustumer } from '../../hooks/useCustumer';
 import { CustonContent } from './historico/CustonContent';
 
 const Transition = React.forwardRef(function Transition(props, ref) {

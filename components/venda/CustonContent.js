@@ -1,7 +1,7 @@
 import { CustomerCard } from "./CustonCard";
 import { Box, Grid } from '@mui/material';
 import { useEffect } from "react";
-import { useSell } from "src/hooks/useSell";
+import { useSell } from "../../hooks/useSell";
 
 export const CustonContent = () => {
 

@@ -1,7 +1,7 @@
 import { Box, Grid } from '@mui/material';
 
 import { CustonListTable } from "./CustonListTable";
-import { useSell } from "src/hooks/useSell";
+import { useSell } from "../../hooks/useSell";
 
 export const CustonList = () => {
 

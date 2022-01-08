@@ -16,8 +16,8 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 
 import { useContext, useState } from 'react';
-import { SellItensContext } from 'src/Context/SellItensContext';
-import { useSell } from 'src/hooks/useSell';
+import { SellItensContext } from '../../Context/SellItensContext';
+import { useSell } from '../../hooks/useSell';
 import { Search as SearchIcon } from '../../icons/search';
 import CriaModal from './CriaModal';
 

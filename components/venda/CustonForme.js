@@ -8,9 +8,9 @@ import {
   Grid,
   TextField
 } from '@mui/material';
-import { SellItensContext } from 'src/Context/SellItensContext';
-import { CustumerContext } from 'src/Context/CustumerContext';
-import { SellContex } from 'src/Context/SellContext';
+import { SellItensContext } from '../../Context/SellItensContext';
+import { CustumerContext } from '../../Context/CustumerContext';
+import { SellContex } from '../../Context/SellContext';
 
 const meio_de_pg = [
   {
