@@ -11,6 +11,7 @@ import {
 import { SellItensContext } from '../../Context/SellItensContext';
 import { CustumerContext } from '../../Context/CustumerContext';
 import { SellContex } from '../../Context/SellContext';
+import { AuthContext } from '../../Context/AuthContext';
 
 const meio_de_pg = [
   {
@@ -26,8 +27,8 @@ const meio_de_pg = [
     label: 'Cartão de Crédito'
   },
   {
-    value: "Cartão de Crédito",
-    label: 'Cartão de debito'
+    value: "Cartão de Debito",
+    label: 'Cartão de Debito'
   },
   {
     value: "Crediario",
@@ -51,13 +52,16 @@ export const CustonForme = () => {
     set_open,
     handleCria
   } = useContext(SellContex);
-   
+
+  const { 
+    user
+  } = useContext(AuthContext);
 
 
   const [values, setValues] = useState({
     meio_pagto: 'Dinheiro',
     valor_total: total,
-    cliente: 4,
+    id: 4,
   });
 
 
@@ -77,7 +81,9 @@ export const CustonForme = () => {
       meio_pagto: values.meio_pagto,
       preco_final: values.valor_total,
       cliente: values.id,
-      tipo: 'Venda'
+      tipo: 'Venda',
+      status_caixa: 'Aberto',
+      referencia_externa: user.caixa_id,
     })
     reset_itens_sell_list()
     set_open(false)
@@ -156,7 +162,7 @@ export const CustonForme = () => {
             >
               <TextField
                 fullWidth
-                label="Meio de pagamento"
+                label="Cliente"
                 name="id"
                 onChange={handleChange}
                 select
@@ -164,7 +170,6 @@ export const CustonForme = () => {
                 value={values.id}
                 variant="outlined"
               >
-                
                 {clientes.map((option) => (
                   <option
                     key={option.id}

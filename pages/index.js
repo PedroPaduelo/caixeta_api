@@ -1,116 +1,130 @@
 import Head from 'next/head';
-import { Box, Container, Grid } from '@mui/material';
-import { Budget } from '../components/dashboard/budget';
-import { LatestOrders } from '../components/dashboard/latest-orders';
-import { LatestProducts } from '../components/dashboard/latest-products';
-import { Sales } from '../components/dashboard/sales';
-import { TasksProgress } from '../components/dashboard/tasks-progress';
-import { TotalCustomers } from '../components/dashboard/total-customers';
-import { TotalProfit } from '../components/dashboard/total-profit';
-import { TrafficByDevice } from '../components/dashboard/traffic-by-device';
-import { DashboardLayout } from '../components/dashboard-layout';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/AuthContext';
 
-const Dashboard = () => (
-  <>
-    <Head>
-      <title>
-        Dashboard | Material Kit
-      </title>
-    </Head>
-    <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        py: 8
-      }}
-    >
-      <Container maxWidth={false}>
-        <Grid
-          container
-          spacing={3}
-        >
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xl={3}
-            xs={12}
-          >
-            <Budget />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TotalCustomers />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TasksProgress />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <TotalProfit sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <Sales />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <TrafficByDevice sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-            <LatestProducts sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <LatestOrders />
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
-  </>
-);
 
-Dashboard.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+const Login = () => {
 
-export default Dashboard;
+  const { 
+    handleLogin
+  } = useContext(AuthContext);
+
+
+  const formik = useFormik({
+    initialValues: {
+      email: 'myke@gmail.com',
+      password: '12345'
+    },
+    validationSchema: Yup.object({
+      email: Yup
+        .string()
+        .email(
+          'Must be a valid email')
+        .max(255)
+        .required(
+          'Email is required'),
+      password: Yup
+        .string()
+        .max(255)
+        .required(
+          'Password is required')
+    }),
+
+
+    onSubmit: async () => {
+      const { email, password } = formik.values;
+      await handleLogin(password, email)
+    }
+
+
+  });
+
+
+  return (
+    <>
+      <Head>
+        <title>Login | Material Kit</title>
+      </Head>
+      <Box
+        component="main"
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          flexGrow: 1,
+          minHeight: '100%'
+        }}
+      >
+        <Container maxWidth="sm">
+          <form onSubmit={formik.handleSubmit}>
+           
+            
+          
+            <Box
+              sx={{
+                pb: 1,
+                pt: 3
+              }}
+            >
+              <Typography
+                align="center"
+                color="textSecondary"
+                variant="body1"
+              >
+                Entrar em Adega.Caixeta
+              </Typography>
+            </Box>
+
+            <TextField
+              error={Boolean(formik.touched.email && formik.errors.email)}
+              fullWidth
+              helperText={formik.touched.email && formik.errors.email}
+              label="Email"
+              margin="normal"
+              name="email"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="email"
+              value={formik.values.email}
+              variant="outlined"
+            />
+
+
+            <TextField
+              error={Boolean(formik.touched.password && formik.errors.password)}
+              fullWidth
+              helperText={formik.touched.password && formik.errors.password}
+              label="Senha"
+              margin="normal"
+              name="password"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="password"
+              value={formik.values.password}
+              variant="outlined"
+            />
+
+
+            <Box sx={{ py: 2 }}>
+              <Button
+                color="primary"
+                disabled={formik.isSubmitting}
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+              >
+                Entrar
+              </Button>
+            </Box>
+         
+          </form>
+        </Container>
+      </Box>
+    </>
+  );
+};
+
+export default Login;

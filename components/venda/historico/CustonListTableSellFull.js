@@ -9,6 +9,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useContext, useEffect, useMemo } from 'react';
 import { SellContex } from '../../../Context/SellContext';
 import TabelaFilter from './TabelaFilter';
+import { AuthContext } from '../../../Context/AuthContext';
 
 
 
@@ -92,18 +93,21 @@ export const CustonListTableSellFull = (props) => {
   const { 
     vendas,
     totalSell,
-    handleSumFull,
-    handleLista,
+    handleSumFullVendasCaixa,
+    handleListaVendasCaixa,
     handleDeleta
   } = useContext(SellContex);
 
+  const { 
+    user
+  } = useContext(AuthContext);
   
   useEffect(() => {
     
     async function getUser() {
       try {
-        await handleSumFull()
-        await handleLista()
+        await handleSumFullVendasCaixa(user.caixa_id);
+        await handleListaVendasCaixa(user.caixa_id)
 
       } catch (error) {
         console.log(error);

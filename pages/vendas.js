@@ -9,6 +9,7 @@ import { CustonListTableSellFull } from '../components/venda/historico/CustonLis
 import { CustonToolbarVendas } from '../components/venda/CustonToolbarVendas';
 import { CustonListTableVendas } from '../components/venda/CustonListTableVendas';
 import TabelaFilter from '../components/venda/historico/TabelaFilter';
+import { CaixaProvider } from '../Context/CaixaContext';
 
 
 const header = [
@@ -62,11 +63,13 @@ const Venda = () => (
       <SellProvider>
         <SellItensProvider>
           <CustumerProvider>
-            <Container maxWidth={false}>
-              <CustonToolbarVendas title="Vendas" />
-              <CustonListTableVendas/>
-              <CustonListTableSellFull/>
-            </Container>
+            <CaixaProvider>
+              <Container maxWidth={false}>
+                <CustonToolbarVendas title="Vendas" />
+                <CustonListTableVendas/>
+                <CustonListTableSellFull/>
+              </Container>
+            </CaixaProvider>
           </CustumerProvider>
         </SellItensProvider>
       </SellProvider>

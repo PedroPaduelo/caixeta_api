@@ -1,12 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
-import { createContext }  from 'use-context-selector';
+import { useRouter } from 'next/router';
+import { useState, useEffect, useCallback, createContext } from 'react';
 import api from '../services/api';
 
 const AuthContext = createContext();
 
 
 function AuthProvider({ children }) {
-
+  const router = useRouter();
   const [ authenticated, setAuthenticated ] = useState(false);
   const [ loading, setLoading ] = useState(true);
   const [ user, setUser ] = useState();
@@ -21,7 +21,7 @@ function AuthProvider({ children }) {
 
     // valida se usuario existe
     if(!data.status === "failed"){
-      return true
+      return false
     }
     else{
       localStorage.setItem('token', JSON.stringify(data.data.user_token));
@@ -33,6 +33,7 @@ function AuthProvider({ children }) {
       setAuthenticated(true);
       setLoading(false)
 
+      router.push('/dashboard');
       return true
     }
   },[])
@@ -75,7 +76,8 @@ function AuthProvider({ children }) {
   }
   const UpdateUser = useCallback( async(dados) => {
     try {
-      await api.put(`/User`, dados)
+      const {data} = await api.put(`/User`, dados)
+      setUser(data.data)
       return true
     } catch (error) {
       console.log(error)
@@ -89,6 +91,7 @@ function AuthProvider({ children }) {
       } catch (error) {
         setAuthenticated(false);
         setLoading(false)
+        router.push('/');
       }
     }
     getUser(); 

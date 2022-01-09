@@ -20,6 +20,9 @@ import { SellItensContext } from '../../Context/SellItensContext';
 import { useSell } from '../../hooks/useSell';
 import { Search as SearchIcon } from '../../icons/search';
 import CriaModal from './CriaModal';
+import AbreCaixa from './AbreCaixa';
+import { AuthContext } from '../../Context/AuthContext';
+import FecharCaixa from './FecharCaixa';
 
 
 
@@ -30,6 +33,9 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
 
   const {handleListaLike, produtoslist, sprodutoslist} = useSell()
   const { set_itens_sell_list } = useContext(SellItensContext);
+  const { 
+    user
+  } = useContext(AuthContext);
 
 
   const [produtoPesquisa, sprodutoPesquisa] = useState("");
@@ -108,9 +114,31 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
         </Typography>
   
   
-        <Box sx={{ m: 1 }}>
-          <CriaModal titulo={"Venda"}/>
+        <Box sx={{ m: 1, display: "flex" }}>
+
+          {
+            user?.caixa_aberto !== "Sim" &&
+            <Box sx={{ m: 1 }}>
+              <AbreCaixa/>
+            </Box>
+          }
+
+          {
+            user?.caixa_aberto === "Sim" &&
+            <>
+              <Box sx={{ m: 1 }}>
+                <FecharCaixa />
+              </Box>
+
+              <Box sx={{ m: 1 }}>
+                <CriaModal titulo={"Venda"}/>
+              </Box>
+            </>
+          }
+          
+
         </Box>
+
       </Box>
 
       <Box sx={{ mt: 3 }}>

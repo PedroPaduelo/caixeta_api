@@ -39,18 +39,30 @@ function SellProvider({ children }) {
     sprodutoslistSell([...produtoslistSell, dados]);
   },[])
 
-
-
   const handleSumFull = useCallback(async() => {
     const sell = await api.get(`SunFull/tbl_vendas/preco_final`);
     stotalSell(sell.data.result.sum);
   },[])
 
 
+  
+
+
   const handleLista = useCallback(async() => {
     const {data} = await api.get(`ListFull/${tabele}`);
     setVendas(data.result);
   },[])
+
+
+  const handleListaVendasCaixa = useCallback(async(id) => {
+    const {data} = await api.get(`ListByCol/${tabele}/referencia_externa/${id}`);
+    setVendas(data.result);
+  },[])
+  const handleSumFullVendasCaixa = useCallback(async(id) => {
+    const sell = await api.get(`SunByCol/tbl_vendas/preco_final/referencia_externa/${id}`);
+    stotalSell(sell.data.result.sum);
+  },[])
+  
 
   const handleListaByCol = useCallback(async(id) => {
     const {data} = await api.get(`/ListByCol/${tabele}/cliente/${id}`);
@@ -130,6 +142,8 @@ function SellProvider({ children }) {
       set_list_sell,
 
       handleCria,
+      handleListaVendasCaixa,
+      handleSumFullVendasCaixa,
       handleLista,
       handleListaByCol,
       handleListaLike,
