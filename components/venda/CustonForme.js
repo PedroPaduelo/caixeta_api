@@ -84,7 +84,7 @@ export const CustonForme = () => {
       tipo: 'Venda',
       status_caixa: 'Aberto',
       referencia_externa: user.caixa_id,
-    })
+    }, user.caixa_id);
     reset_itens_sell_list()
     set_open(false)
   },[values])

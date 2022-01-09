@@ -31,14 +31,12 @@ export const CustonFormeFechaaCaixa = () => {
     credito,
     pix,
     handleAtualizaVendas,
-    handleSumByCold,
-    handleSumByColdeb,
-    handleSumByColcred,
-    handleSumByColpix
   } = useContext(CaixaContext);
   
 
-
+  const { 
+    vendas
+  } = useContext(SellContex);
 
 
 
@@ -201,7 +199,7 @@ export const CustonFormeFechaaCaixa = () => {
               
               await handleCria({
                 tipo: "Fechar o Caixa ",
-                valor: values.valor_no_caixa,
+                valor: (parseFloat(dinheiro) + parseFloat(debito) + parseFloat(credito) + parseFloat(pix)),
                 referencia_externa: user?.caixa_id,
               });
 

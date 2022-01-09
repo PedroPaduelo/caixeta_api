@@ -1,6 +1,7 @@
-import { useState, useCallback, createContext } from 'react';
+import { useState, useCallback, createContext, useContext } from 'react';
 
 import api from '../services/api';
+import { AuthContext } from './AuthContext';
 
 const SellContex = createContext();
 
@@ -9,6 +10,11 @@ const tabele = "tbl_vendas"
 
 
 function SellProvider({ children }) {
+
+
+  const { 
+    user
+  } = useContext(AuthContext);
 
   const [ open, setOpen] = useState(false);
 
@@ -69,10 +75,10 @@ function SellProvider({ children }) {
     setVendasCliente(data.result);
   },[])
 
-  const handleCria = useCallback(async(dados) => {
+  const handleCria = useCallback(async(dados, id) => {
     await api.post(`Creat/${tabele}`,dados );
-    await handleLista()
-    await handleSumFull()
+    await handleListaVendasCaixa(id)
+    await handleSumFullVendasCaixa(id)
   },[])
 
   const handleAtualiza = useCallback(async(dados) => {
@@ -85,8 +91,8 @@ function SellProvider({ children }) {
 
   const handleDeleta = useCallback(async(id) => {
     await api.delete(`DeletByCol/${tabele}/${id}`);
-    await handleLista()
-    await handleSumFull()
+    await handleListaVendasCaixa(user.id)
+    await handleSumFullVendasCaixa(user.id)
   },[])
 
   const handleDeletaVendaCliente = useCallback(async(id, id_client) => {

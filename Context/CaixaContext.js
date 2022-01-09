@@ -43,7 +43,7 @@ function CaixaProvider({ children }) {
   const handleSumByCold = useCallback(async(id) => {
     const sell = await api.get(`SunByCols/tbl_vendas/preco_final/referencia_externa/${id}/meio_pagto/Dinheiro`);
 
-    sdinheiro(sell.data.result.sum);
+    sdinheiro(sell.data.result.sum || 0);
   },[])
 
 
@@ -57,14 +57,14 @@ function CaixaProvider({ children }) {
   const handleSumByColcred = useCallback(async(id) => {
     const sell = await api.get(`SunByCols/tbl_vendas/preco_final/referencia_externa/${id}/meio_pagto/Cartão de Crédito`);
 
-    scredito(sell.data.result.sum);
+    scredito(sell.data.result.sum || 0);
   },[])
 
 
   const handleSumByColpix = useCallback(async(id) => {
     const sell = await api.get(`SunByCols/tbl_vendas/preco_final/referencia_externa/${id}/meio_pagto/Pix`);
 
-    spix(sell.data.result.sum);
+    spix(sell.data.result.sum || 0);
   },[])
 
 
@@ -74,14 +74,16 @@ function CaixaProvider({ children }) {
 
 
   const set_open = useCallback(async(dados) => {
-    setOpen(dados);
+    
 
     await handleSumByCold(user.caixa_id);
     await handleSumByColdeb(user.caixa_id)
     await handleSumByColcred(user.caixa_id);
     await handleSumByColpix(user.caixa_id)
 
-  },[])
+    setOpen(dados);
+
+  },[user?.caixa_id])
 
 
 
