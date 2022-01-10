@@ -2,6 +2,7 @@ import { useState, useCallback, createContext, useContext } from 'react';
 
 import api from '../services/api';
 import { AuthContext } from './AuthContext';
+import { SellContex } from './SellContext';
 
 const CaixaContext = createContext();
 
@@ -18,7 +19,6 @@ function CaixaProvider({ children }) {
     user,
   } = useContext(AuthContext);
 
-  
 
 
 
@@ -111,8 +111,10 @@ function CaixaProvider({ children }) {
   },[])
 
   const handleAtualizaVendas = useCallback(async(dados) => {
-    console.log(dados)
-      await api.put(`AtualizaVendasEmLot`, {dados} );
+    await api.put(`AtualizaVendasEmLot`, {dados} );
+
+
+
   },[])
   
 

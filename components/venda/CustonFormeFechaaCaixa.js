@@ -35,7 +35,9 @@ export const CustonFormeFechaaCaixa = () => {
   
 
   const { 
-    vendas
+    vendas,
+    handleListaVendasCaixa,
+    handleSumFullVendasCaixa
   } = useContext(SellContex);
 
 
@@ -196,6 +198,7 @@ export const CustonFormeFechaaCaixa = () => {
             color="primary"
             variant="contained"
             onClick={ async() => {
+              const id = user?.caixa_id;
               
               await handleCria({
                 tipo: "Fechar o Caixa ",
@@ -204,7 +207,7 @@ export const CustonFormeFechaaCaixa = () => {
               });
 
               set_open(false);
-
+              
               await UpdateUser({
                 ...user,
                 caixa_id: 0,
@@ -212,7 +215,9 @@ export const CustonFormeFechaaCaixa = () => {
               });
 
               await handleAtualizaVendas(vendas)
-
+              
+              await handleListaVendasCaixa(0)
+              await handleSumFullVendasCaixa(0)
               
 
           
