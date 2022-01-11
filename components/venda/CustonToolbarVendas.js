@@ -80,6 +80,7 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
         promocao: produtoSell.promocao,
         unidade: produtoSell.unidade,
         quantidade: quantidade,
+        quantidade_estoque: produtoSell.qtd_em_estoque,
         total: total
       })
       

@@ -74,7 +74,6 @@ export const CustonForme = () => {
   };
 
   const Up_Insert = useCallback(async() => {
-    console.log(values);
 
     await handleCria({
       itens: itensSellList,
