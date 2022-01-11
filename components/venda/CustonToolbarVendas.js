@@ -9,7 +9,6 @@ import {
   ListItem, 
   ListItemButton, 
   ListItemText, 
-  ListItemAvatar, 
   Avatar,
   Fab
 } from '@mui/material';
@@ -67,11 +66,6 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
   const handleChangeprodutoSellList = async() => {
 
     if(produtoSell){
-      sprodutoPesquisa("")
-      squantidade(0)
-      stotal("0.00")
-      sprodutoSell()
-      
       set_itens_sell_list({
         categorias: produtoSell.categorias,
         codigo_de_barras: produtoSell.codigo_de_barras,
@@ -88,12 +82,20 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
         quantidade: quantidade,
         total: total
       })
+      
+      sprodutoPesquisa("")
+      squantidade(0)
+      stotal("0.00")
+      sprodutoSell()
+      
+      
     }else{
       alert("Selecione um produto")
     }
   };
 
 
+  
   return (
     <Box {...props}>
 
@@ -144,16 +146,15 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
       <Box sx={{ mt: 3 }}>
         <Card>
           <CardContent>
-  
             <Grid
               container
-              spacing={2}
+              spacing={1}
+              columns={16}
             >
-
               {/* Produto */} 
               <Grid
                 item
-                md={7}
+                md={9}
                 xs={12}
               >
                 <TextField
@@ -178,27 +179,53 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
                   variant="outlined"
                 />
 
-
-
-
                 <Grid
                   item
-                  md={12}
-                  xs={12}
+                  md={16}
+                  xs={16}
                   marginTop={2}
                   marginLeft={2}
                 >
                   <List>
                     {produtoslist.map(produto => (
                       
-                      <ListItem key={produto.id} disablePadding onClick={()=>{handleChangeProdSell(produto)}} >
-                        <ListItemAvatar>
-                          <Avatar src={produto.midia }/> 
-                        </ListItemAvatar>
-
-                        <ListItemButton>
-                          <ListItemText primary={produto.descricao_prod }/>
+                      <ListItem 
+                        key={produto.id} 
+                        disablePadding 
+                        onClick={()=>{handleChangeProdSell(produto)}} 
+                      >
+                        <ListItemButton 
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            width: "100%",
+                            padding: "10px"
+                          }}
+                        >
+                          <Grid
+                            item
+                            xs={2}
+                          >
+                            <Avatar src={produto.midia }/> 
+                          </Grid>
+                          <Grid
+                            item
+                            xs={9}
+                          >
+                            <ListItemText primary={produto.descricao_prod}/>
+                          </Grid>
+                          <Grid
+                            item
+                            xs={1}
+                          >
+                            <ListItemText primary={produto.qtd_em_estoque}/>
+                          </Grid>
+                          
+                          
+                          
                         </ListItemButton>
+
                       </ListItem>
 
                     ))}
@@ -207,10 +234,10 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
 
               </Grid>
 
-              {/* Quantidades */} 
+              {/* Quantidades 2*/} 
               <Grid
                 item
-                md={1}
+                md={2}
                 xs={12}
               >
                 <TextField
@@ -224,23 +251,31 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
                 />
               </Grid>
 
-              {/* Preço Unitario */} 
+              {/* Preço Unitario 2 */} 
               <Grid
                 item
-                md={1}
+                md={2}
                 xs={12}
               >
                 <TextField
                   fullWidth
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <p>R$</p>
+                      </InputAdornment>
+                    )
+                  }}
+                  disabled
                   required
-                  label="Unidade"
+                  label="Valor Unitário"
                   name="Unidade"
                   value={produtoSell?.preco_de_venda || 0}
                   variant="outlined"
                 />
               </Grid>
   
-              {/* Total */} 
+              {/* Total 2*/} 
               <Grid
                 item
                 md={2}
@@ -264,7 +299,7 @@ export const CustonToolbarVendas = ( {title, ...props} ) => {
                 />
               </Grid>
 
-              {/* Adicionar */} 
+              {/* Adicionar 2*/} 
               <Grid
                 item
                 md={1}

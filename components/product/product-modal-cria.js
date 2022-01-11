@@ -34,7 +34,7 @@ export default function ProductCriaModal() {
         variant="contained"
         onClick={handleClickOpen}
       >
-        Adicionar produtos
+        Criar produtos
       </Button>
 
 

@@ -12,6 +12,7 @@ import { Download as DownloadIcon } from '../../icons/download';
 import { Search as SearchIcon } from '../../icons/search';
 import { Upload as UploadIcon } from '../../icons/upload';
 import ProductCriaModal from './product-modal-cria';
+import ProductEntradaModal from './product-modal-entrada';
 
 export const ProductListToolbar = (props) => (
   <Box {...props}>
@@ -30,19 +31,11 @@ export const ProductListToolbar = (props) => (
       >
         Produtos
       </Typography>
+
       <Box sx={{ m: 1 }}>
-        <Button
-          startIcon={(<UploadIcon fontSize="small" />)}
-          sx={{ mr: 1 }}
-        >
-          Importar
-        </Button>
-        <Button
-          startIcon={(<DownloadIcon fontSize="small" />)}
-          sx={{ mr: 1 }}
-        >
-          Exportar
-        </Button>
+      
+        <ProductEntradaModal />
+
         <ProductCriaModal />
       </Box>
     </Box>
