@@ -52,6 +52,25 @@ function SellProvider({ children }) {
 
 
   
+  const handleAtualizaLotLanca = useCallback(async(dados) => {
+
+console.log(dados)
+    // dados.map(async(dado) => {
+    //   await api.put(`Update/tbl_produtos`,{
+    //     id: dado.id,
+    //     preco_de_custo: dado.preco_de_custo_new,
+    //     markup: dado.markup_new,
+    //     qtd_em_estoque: dado.quantidade_new,
+    //   } );
+    // })
+
+    // await handleLista()
+
+    // sitensLancaList([])
+    // setOpenLanca(false)
+
+  },[])
+
 
 
   const handleLista = useCallback(async() => {
@@ -77,6 +96,7 @@ function SellProvider({ children }) {
 
   const handleCria = useCallback(async(dados, id) => {
     await api.post(`Creat/${tabele}`,dados );
+    await handleAtualizaLotLanca(dados.itens)
     await handleListaVendasCaixa(id)
     await handleSumFullVendasCaixa(id)
   },[])
