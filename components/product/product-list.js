@@ -155,7 +155,7 @@ export const ListProd = () => {
         data,
         initialState: { 
           pageIndex: 0 , 
-          pageSize:  9,
+          pageSize:  16,
          }
       }, 
       useFilters,
@@ -209,7 +209,7 @@ return(
         <Grid
           item
           key={row.original.id}
-          lg={4}
+          lg={3}
           md={6}
           xs={12}
         >

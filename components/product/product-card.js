@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Avatar, Box, Card, CardContent, Divider, Grid, Typography } from '@mui/material';
-import { Clock as ClockIcon } from '../../icons/clock';
+import SellIcon from '@mui/icons-material/Sell';
 
 export const ProductCard = ({ product, edit, ...rest }) => (
   <Card
@@ -55,14 +55,14 @@ export const ProductCard = ({ product, edit, ...rest }) => (
             display: 'flex'
           }}
         >
-          <ClockIcon color="action" />
+          <SellIcon color="action" />
           <Typography
             color="textSecondary"
             display="inline"
             sx={{ pl: 1 }}
             variant="body2"
           >
-            Atualizado em 30 minutos
+           R$ {product.preco_de_venda}
           </Typography>
         </Grid>
         <Grid
