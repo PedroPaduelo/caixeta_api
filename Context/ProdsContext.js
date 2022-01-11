@@ -38,7 +38,6 @@ function ProdsProvider({ children }) {
 
     sitensLancaList([...itensLancaList, dados]);
   },[itensLancaList])
-
   const remove_itens_lanca_list = useCallback((dados, i) => {
 
     const auxiTotal = (parseFloat(total) - parseFloat(dados.total)).toFixed(2)
@@ -50,19 +49,10 @@ function ProdsProvider({ children }) {
 
     sitensLancaList(list);
   },[itensLancaList])
-
   const reset_itens_lanca_list = useCallback(() => {
     stotal(0)
     sitensLancaList([]);
   },[itensLancaList])
-
-
-
-
-
-
-
-
 
 
   
@@ -70,20 +60,16 @@ function ProdsProvider({ children }) {
     const {data} = await api.get(`ListByColLike/tbl_produtos/descricao_prod/${dados}`);
     sprods(data.result);
   },[])
-
   const handleListaLikeLanca = useCallback(async(dados) => {
     const {data} = await api.get(`ListByColLike/tbl_produtos/descricao_prod/${dados}`);
     sprodsLanca(data.result);
   },[])
-
-
   const handleLista = useCallback(async() => {
 
     const {data} = await api.get(`ListFull/tbl_produtos`);
     sprods(data.result);
 
   },[])
-
   const handleListaByCol = useCallback(async(id, col) => {
     if(id!=0){
       const {data} = await api.get(`/ListByCol/tbl_produtos/${col}/${id}`);
@@ -92,17 +78,10 @@ function ProdsProvider({ children }) {
       await handleLista()
     }
   },[handleLista])
-
-
-
-
-
-
   const handleCria = useCallback(async(dados) => {
     await api.post(`Creat/tbl_produtos`,dados );
     await handleLista()
   },[])
-
   const handleAtualiza = useCallback(async(dados) => {
     
     await api.put(`Update/tbl_produtos`,dados );
@@ -110,8 +89,6 @@ function ProdsProvider({ children }) {
     sprod();
 
   },[])
-
-
   const handleAtualizaLotLanca = useCallback(async(dados) => {
 
     console.log(dados)
@@ -131,12 +108,6 @@ function ProdsProvider({ children }) {
     setOpenLanca(false)
 
   },[])
-
-
-
-
-
-
   const handleDeleta = useCallback(async(id) => {
     
     await api.post(`DeletByCol/tbl_produtos/${id}`);

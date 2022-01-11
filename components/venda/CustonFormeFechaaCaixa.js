@@ -30,6 +30,7 @@ export const CustonFormeFechaaCaixa = () => {
     debito,
     credito,
     pix,
+    caixa,
     handleAtualizaVendas,
   } = useContext(CaixaContext);
   
@@ -61,48 +62,56 @@ export const CustonFormeFechaaCaixa = () => {
             container
             spacing={2}
           >
-            {/* Usuario atual */} 
-            <Grid
-              item
-              md={12}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                disabled
-                label="Total a pagar"
-                name="email"
-                required
-                value={`${user?.user_email}`}
-                variant="outlined"
-              />
-            </Grid>
-
-
-
+            
+          
 
             {/* Dinheiro */} 
             <Grid
+              sx={{display: 'flex'}}
               item
               md={12}
               xs={12}
             >
-              <TextField
-                fullWidth
-                disabled
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <p>R$</p>
-                    </InputAdornment>
-                  )
-                }}
-                label="Total em Dinheiro"
-                name="Dinheiro"
-                required
-                value={`${dinheiro}`}
-                variant="outlined"
-              />
+              <Grid>
+                <TextField
+                  fullWidth
+                  disabled
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <p>R$</p>
+                      </InputAdornment>
+                    )
+                  }}
+                  label="Entrada Caixa"
+                  name="Dinheiro"
+                  required
+                  value={parseFloat(caixa).toFixed(2)}
+                  variant="outlined"
+                />
+              </Grid>
+
+              <Grid
+                sx={{ml: 2}}
+              >
+                <TextField
+                  fullWidth
+                  disabled
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <p>R$</p>
+                      </InputAdornment>
+                    )
+                  }}
+                  label="Total em Dinheiro"
+                  name="Dinheiro"
+                  required
+                  value={`${dinheiro}`}
+                  variant="outlined"
+                />
+              </Grid>
+
             </Grid>
 
             {/* Total no Debito */} 
@@ -124,7 +133,7 @@ export const CustonFormeFechaaCaixa = () => {
                 label="Total em Debito"
                 name="Debito"
                 required
-                value={`${debito}`}
+                value={parseFloat(debito).toFixed(2)}
                 variant="outlined"
               />
             </Grid>
@@ -148,7 +157,7 @@ export const CustonFormeFechaaCaixa = () => {
                 label="Total em credito"
                 name="credito"
                 required
-                value={`${credito}`}
+                value={parseFloat(credito).toFixed(2)}
                 variant="outlined"
               />
             </Grid>
@@ -172,7 +181,32 @@ export const CustonFormeFechaaCaixa = () => {
                 label="Total em Pix"
                 name="Pix"
                 required
-                value={`${pix}`}
+                value={ parseFloat(pix).toFixed(2)}
+                variant="outlined"
+              />
+            </Grid>
+
+
+            {/* Total no Caixa */} 
+            <Grid
+              item
+              md={12}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                disabled
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <p>R$</p>
+                    </InputAdornment>
+                  )
+                }}
+                label="Total Geral"
+                name="Pix"
+                required
+                value={ (parseFloat(dinheiro) +  parseFloat(debito) + parseFloat(credito) + parseFloat(pix) + parseFloat(caixa)).toFixed(2) }
                 variant="outlined"
               />
             </Grid>

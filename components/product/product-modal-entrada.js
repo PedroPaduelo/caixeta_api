@@ -125,6 +125,7 @@ export default function ProductEntradaModal() {
       >
         <AppBar sx={{ position: 'relative' }}>
           <Toolbar>
+
             <IconButton
               edge="start"
               color="inherit"
@@ -144,6 +145,7 @@ export default function ProductEntradaModal() {
             >
               Gravar Lançamento
             </Button>
+            
           </Toolbar>
         </AppBar>
 

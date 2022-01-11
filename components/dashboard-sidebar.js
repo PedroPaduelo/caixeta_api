@@ -25,14 +25,14 @@ const items = [
     title: 'Vendas'
   },
   {
-    href: '/customers',
-    icon: (<UsersIcon fontSize="small" />),
-    title: 'Clientes'
-  },
-  {
     href: '/products',
     icon: (<ShoppingBagIcon fontSize="small" />),
     title: 'Produtos'
+  },
+  {
+    href: '/customers',
+    icon: (<UsersIcon fontSize="small" />),
+    title: 'Clientes'
   },
   {
     href: '/account',
