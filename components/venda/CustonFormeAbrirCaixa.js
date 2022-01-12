@@ -24,7 +24,7 @@ export const CustonFormeAbrirCaixa = () => {
    
   const { 
     handleCria,
-    set_open
+    set_openA
   } = useContext(CaixaContext);
   
 
@@ -119,7 +119,7 @@ export const CustonFormeAbrirCaixa = () => {
             onClick={ async() => {
               const id = uuidv4();
 
-              set_open(false)
+              set_openA(false)
 
               await UpdateUser({
                 ...user,

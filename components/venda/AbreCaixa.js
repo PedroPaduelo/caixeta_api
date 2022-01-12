@@ -18,17 +18,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function AbreCaixa() {
  
   const { 
-    open,
-    set_open,
+    opena,
+    set_openA,
   } = useContext(CaixaContext);
 
 
   const handleClickOpen = () => {
-    set_open(true);
+    set_openA(true);
   };
 
   const handleClose = () => {
-    set_open(false);
+    set_openA(false);
   };
 
   return (
@@ -45,7 +45,7 @@ export default function AbreCaixa() {
       <Dialog
         fullWidth={true}
         maxWidth={"sm"}
-        open={open}
+        open={opena}
         onClose={handleClose}
         TransitionComponent={Transition}
       >

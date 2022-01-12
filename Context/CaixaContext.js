@@ -7,6 +7,8 @@ const CaixaContext = createContext();
 function CaixaProvider({ children }) {
 
   const [ open, setOpen] = useState(false);
+
+  const [ opena, setOpena] = useState(false);
   const [ caixa, scaixa] = useState(0);
   const [ dinheiro, sdinheiro] = useState(0);
   const [ debito, sdebito] = useState(0);
@@ -54,8 +56,9 @@ function CaixaProvider({ children }) {
     const {data} = await api.get(`ListByCol/tbl_caixa/referencia_externa/${id}`);
     scaixa(data.result[0].valor);
   },[])
+
   const set_open = useCallback(async(dados) => {
-    
+
     await handleListaCaixaAberto(user.caixa_id);
     await handleSumByCold(user.caixa_id);
     await handleSumByColdeb(user.caixa_id)
@@ -65,6 +68,15 @@ function CaixaProvider({ children }) {
     setOpen(dados);
 
   },[user?.caixa_id])
+
+
+  const set_openA = useCallback(async(dados) => {
+
+    setOpena(dados);
+
+  },[])
+
+
   const handleCria = useCallback(async(dados) => {
     await api.post(`Creat/tbl_caixa`, dados)
   },[])
@@ -92,6 +104,7 @@ function CaixaProvider({ children }) {
   return (
     <CaixaContext.Provider value={{ 
       open,
+      opena,
       dinheiro,
       debito,
       credito,
@@ -99,6 +112,7 @@ function CaixaProvider({ children }) {
       caixa,
 
       set_open, 
+      set_openA,
 
       handleCria,
       handleListaByCol,
