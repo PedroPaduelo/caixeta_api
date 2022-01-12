@@ -57,11 +57,11 @@ function ProdsProvider({ children }) {
 
   
   const handleListaLike = useCallback(async(dados) => {
-    const {data} = await api.get(`ListByColLike/tbl_produtos/descricao_prod/${dados}`);
+    const {data} = await api.get(`ListByColLike/tbl_produtos/descricao_prod_lowercase/${dados}`);
     sprods(data.result);
   },[])
   const handleListaLikeLanca = useCallback(async(dados) => {
-    const {data} = await api.get(`ListByColLike/tbl_produtos/descricao_prod/${dados}`);
+    const {data} = await api.get(`ListByColLike/tbl_produtos/descricao_prod_lowercase/${dados}`);
     sprodsLanca(data.result);
   },[])
   const handleLista = useCallback(async() => {

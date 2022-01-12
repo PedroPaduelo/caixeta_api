@@ -1,15 +1,12 @@
 import { useState, useCallback, createContext, useContext } from 'react';
-
 import api from '../services/api';
 import { AuthContext } from './AuthContext';
-
 const CaixaContext = createContext();
 
 
 function CaixaProvider({ children }) {
 
   const [ open, setOpen] = useState(false);
-
   const [ caixa, scaixa] = useState(0);
   const [ dinheiro, sdinheiro] = useState(0);
   const [ debito, sdebito] = useState(0);
@@ -21,8 +18,6 @@ function CaixaProvider({ children }) {
 
 
 
-
-  
   const handleLista = useCallback(async() => {
     const {data} = await api.get(`ListFull/tbl_caixa`);
     sprods(data.result);
@@ -55,16 +50,10 @@ function CaixaProvider({ children }) {
 
     spix(sell.data.result.sum || 0);
   },[])
-
-
-
-
   const handleListaCaixaAberto = useCallback(async(id) => {
     const {data} = await api.get(`ListByCol/tbl_caixa/referencia_externa/${id}`);
     scaixa(data.result[0].valor);
   },[])
-
-
   const set_open = useCallback(async(dados) => {
     
     await handleListaCaixaAberto(user.caixa_id);
@@ -76,13 +65,6 @@ function CaixaProvider({ children }) {
     setOpen(dados);
 
   },[user?.caixa_id])
-
-
-
-
-
-
-
   const handleCria = useCallback(async(dados) => {
     await api.post(`Creat/tbl_caixa`, dados)
   },[])
@@ -107,8 +89,6 @@ function CaixaProvider({ children }) {
   },[])
   
 
-
-  
   return (
     <CaixaContext.Provider value={{ 
       open,

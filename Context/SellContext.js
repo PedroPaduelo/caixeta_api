@@ -106,7 +106,7 @@ function SellProvider({ children }) {
     await handleListaByCol(id_client)
   },[])
   const handleListaLike = useCallback(async(dados) => {
-    const {data} = await api.get(`ListByColLike/tbl_produtos/descricao_prod/${dados}`);
+    const {data} = await api.get(`ListByColLike/tbl_produtos/descricao_prod_lowercase/${dados}`);
     sprodutoslist(data.result);
   },[])
   const handleSumByCol = useCallback(async(id) => {
