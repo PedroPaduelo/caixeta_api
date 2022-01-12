@@ -80,12 +80,14 @@ export default function ProductEntradaModal() {
         preco_de_custo: produtoItemLanca.preco_de_custo,
         preco_de_custo_new: (((parseFloat(produtoItemLanca.preco_de_custo) * parseFloat(produtoItemLanca.qtd_em_estoque)) +
           (parseFloat(preco_custo) * parseFloat(quantidade))) / 
-          (parseFloat(quantidade) + parseFloat(produtoItemLanca.qtd_em_estoque))),
+          (parseFloat(quantidade) + parseFloat(produtoItemLanca.qtd_em_estoque))).toFixed(2),
 
         markup: produtoItemLanca.markup,
-        markup_new: (((parseFloat(produtoItemLanca.preco_de_custo) * parseFloat(produtoItemLanca.qtd_em_estoque)) +
+        markup_new: 
+        ((parseFloat(produtoItemLanca.preco_de_venda)*100 )/
+        (((parseFloat(produtoItemLanca.preco_de_custo) * parseFloat(produtoItemLanca.qtd_em_estoque)) +
         (parseFloat(preco_custo) * parseFloat(quantidade))) / 
-        (parseFloat(quantidade) + parseFloat(produtoItemLanca.qtd_em_estoque))) / produtoItemLanca.markup,
+        (parseFloat(quantidade) + parseFloat(produtoItemLanca.qtd_em_estoque))) ).toFixed(2),
 
         quantidade: quantidade,
         quantidade_new: parseFloat(quantidade) +  parseFloat(produtoItemLanca.qtd_em_estoque),

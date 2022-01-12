@@ -57,8 +57,8 @@ export const CustonListTableLancaProd = (props) => {
                   <TableCell> Codigo de Barras </TableCell>
                   <TableCell> Descrição do produtos </TableCell>
                   <TableCell> Quantidade </TableCell>
-                  <TableCell> Preço de custo</TableCell>
                   <TableCell> Preço total </TableCell>
+                  <TableCell> Novo preço de custo</TableCell>
                   <TableCell> Açoes </TableCell>
   
                 </TableRow>
@@ -84,11 +84,13 @@ export const CustonListTableLancaProd = (props) => {
                       {order.quantidade}
                     </TableCell>
                     <TableCell>
-                      R$ {order.preco_de_custo_new}
-                    </TableCell>
-                    <TableCell>
                       R$ {order.total}
                     </TableCell>
+
+                    <TableCell>
+                      R$ {order.preco_de_custo_new}
+                    </TableCell>
+                    
 
                     <TableCell>
                       <Fab 
