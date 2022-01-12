@@ -91,7 +91,7 @@ export const CustonFormeAbrirCaixa = () => {
                     </InputAdornment>
                   )
                 }}
-                label="Total a pagar"
+                label="Suprimento"
                 name="valor_no_caixa"
                 onChange={handleChange}
                 required
