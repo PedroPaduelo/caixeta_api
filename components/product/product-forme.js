@@ -221,7 +221,8 @@ export const ProductForme = () => {
         qtd_estoque_max: parseFloat(values.qtd_estoque_max),
         qtd_estoque_min: parseFloat(values.qtd_estoque_min),
         status: values.status,
-        unidade: values.unidade
+        unidade: values.unidade,
+        descricao_prod_lowercase: values.descricao_prod.toLowerCase()
       })
     }else{
       await handleCria({
