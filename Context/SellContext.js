@@ -113,7 +113,7 @@ function SellProvider({ children }) {
     const sell = await api.get(`SunByCol/tbl_vendas/preco_final/cliente/${id}`);
     const pay = await api.get(`SunByCol/tbl_crediarios_pagos/valor_pago/id_cliente/${id}`);
 
-    const total = sell.data.result.sum - pay.data.result.sum;
+    const total = (sell.data.result.sum - pay.data.result.sum).toFixed(2); ;
     stotalDevedor(total);
   },[])
 

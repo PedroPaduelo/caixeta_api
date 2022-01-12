@@ -57,14 +57,11 @@ export const CustonForme = () => {
     user
   } = useContext(AuthContext);
 
-
   const [values, setValues] = useState({
     meio_pagto: 'Dinheiro',
     valor_total: total,
     id: 4,
   });
-
-
 
   const handleChange = (event) => {
     setValues({
@@ -87,11 +84,6 @@ export const CustonForme = () => {
     reset_itens_sell_list()
     set_open(false)
   },[values])
-
-  
-
-
-
 
   return (
     <form
@@ -204,5 +196,6 @@ export const CustonForme = () => {
 
       </Card>
     </form>
-  );
+  )
+
 };
