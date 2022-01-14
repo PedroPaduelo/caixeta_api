@@ -87,7 +87,7 @@ export default function ProductEntradaModal() {
         ((parseFloat(produtoItemLanca.preco_de_venda)*100 )/
         (((parseFloat(produtoItemLanca.preco_de_custo) * parseFloat(produtoItemLanca.qtd_em_estoque)) +
         (parseFloat(preco_custo) * parseFloat(quantidade))) / 
-        (parseFloat(quantidade) + parseFloat(produtoItemLanca.qtd_em_estoque))) ).toFixed(2),
+        (parseFloat(quantidade) + parseFloat(produtoItemLanca.qtd_em_estoque))) ).toFixed(2)-100,
 
         quantidade: quantidade,
         quantidade_new: parseFloat(quantidade) +  parseFloat(produtoItemLanca.qtd_em_estoque),
