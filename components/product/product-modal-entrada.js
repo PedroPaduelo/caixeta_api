@@ -84,6 +84,7 @@ export default function ProductEntradaModal() {
 
         markup: produtoItemLanca.markup,
         markup_new: 
+        produtoItemLanca.qtd_em_estoque === 0 ? produtoItemLanca.markup :
         ((parseFloat(produtoItemLanca.preco_de_venda)*100 )/
         (((parseFloat(produtoItemLanca.preco_de_custo) * parseFloat(produtoItemLanca.qtd_em_estoque)) +
         (parseFloat(preco_custo) * parseFloat(quantidade))) / 
